@@ -122,8 +122,8 @@ public class Nbody extends JPanel implements ActionListener{
 
         File input = new File(args[0]);//Takes the file inputted at the commandline
         try{//try to read from file
-            Scanner scan = new Scanner(input);//make object of the scanner class
-            String listType = scan.nextLine();//make string to store the first line of the file
+            Scanner sc = new Scanner(input);//make object of the scanner class
+            String listType = sc.nextLine();//make string to store the first line of the file
             if(listType.equals("ArrayList")){ //if the first line is ArrayList
                 temp = new MyArrayList<>();//creates an Arraylist to store the values
             }
@@ -134,12 +134,13 @@ public class Nbody extends JPanel implements ActionListener{
                 System.out.println("Invalid type of List");//print invalid type of list
             }
 
-            tempS = Double.parseDouble(scan.nextLine());//set the temp scale the information on the next line of the file
-            scan.useDelimiter(",");// split the values at the comma
-            while (scan.hasNext()){ //loop to add values to the list
+            tempS = Double.parseDouble(sc.nextLine());//set the temp scale the information on the next line of the file
+            sc.useDelimiter(",");// split the values at the comma
+            while (sc.hasNext()){ //loop to add values to the list
                 assert temp != null;//when the temp is not null
-                temp.add(new Nbody(scan.next(), scan.next(), scan.next(), scan.next(), scan.next(), scan.next(), scan.nextLine()));//add each value to the list
+                temp.add(new Nbody(sc.next(), sc.next(), sc.next(), sc.next(), sc.next(), sc.next(), sc.nextLine()));//add each value to the list
             }
+            sc.close();//close the file
         }
         catch (FileNotFoundException e){//catch the file not found exception
             System.out.println("File not found");//print file not found
