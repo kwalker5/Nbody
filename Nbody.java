@@ -12,8 +12,8 @@ import java.util.*;
 import java.awt.Color;
 
 public class Nbody extends JPanel implements ActionListener{
-    private String name;//string to store the name
-    private double mass;//double to store the mass
+    private String name;//string to store the name of the body
+    private double mass;//double to store the mass of the body 
     private int xcord;//int to store the starting x coordinate
     private int ycord;//int to store the starting y coordinate
     private double xVelocity;//double to store the velocity of x
@@ -66,7 +66,7 @@ public class Nbody extends JPanel implements ActionListener{
         one.yForce += fr * y1 / dist;//add the yforce of the first plus the force times the difference of the y coordinates
 
     }
-    public void reset(){//function to reset the values
+    public void resetForce(){//function to reset the values
         xForce = 0.0;//set x force to 0.0
         yForce = 0.0;//set y force to 0.0
     }
@@ -106,12 +106,12 @@ public class Nbody extends JPanel implements ActionListener{
         for(i = 0; i < list.getSize() - 1; i++){//loop through the list
             list.get(i).force(list.get(i + 1), scale);//calculate the force
             list.get(i).updatePos();//update the position by calling updatePos function
-            list.get(i).reset();//reset the value
+            list.get(i).resetForce();//reset the value
         }
         if(list.getSize() > 1){ //if the list size is greater than one
             list.get(i).force(list.get(i - 1), scale);//calculate the force
             list.get(i).updatePos();//update the position by calling updatePos function
-            list.get(i).reset();//reset the value
+            list.get(i).resetForce();//reset the value
         }
     }
 
@@ -119,10 +119,9 @@ public class Nbody extends JPanel implements ActionListener{
 
         MyLists<Nbody> temp = null;//make a temp list and set it to null
         double tempS = 0;//make a double to store the temp scale and set it to 0
-        Scanner sc= new Scanner(System.in);//make an object of the scanner class
 
-        File input = new File(args[0]);//opens the file name given in the command line
-        try{//try to read from file at given path
+        File input = new File(args[0]);//Takes the file inputted at the commandline
+        try{//try to read from file
             Scanner scan = new Scanner(input);//make object of the scanner class
             String listType = scan.nextLine();//make string to store the first line of the file
             if(listType.equals("ArrayList")){ //if the first line is ArrayList
@@ -132,7 +131,7 @@ public class Nbody extends JPanel implements ActionListener{
                 temp = new MyLinkedList<>();//creates a LinkedList
             }
             else{//if the first line isn't ArrayList or LinkedList
-                System.out.println("Invalid Type of List");
+                System.out.println("Invalid type of List");//print invalid type of list
             }
 
             tempS = Double.parseDouble(scan.nextLine());//set the temp scale the information on the next line of the file
@@ -148,7 +147,7 @@ public class Nbody extends JPanel implements ActionListener{
 
         Nbody nBody = new Nbody(temp, tempS);//make an object of NBodies class based on the temp list and the temp scale
         JFrame jf = new JFrame();//make an object of JFrame
-        jf.setTitle("NBodies");//Title the JFrame
+        jf.setTitle("NBody");//Title the JFrame
         jf.setSize(768,768); //set the window size
         jf.add(nBody); //add nBody to the JFrame
         jf.setVisible(true);//set visible to true
