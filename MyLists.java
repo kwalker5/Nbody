@@ -29,7 +29,8 @@ class MyArrayList<E> implements MyLists<E>{
         if (size == array.length){//if the size equals the length of the array
             growArray();//call the growArray function
         }
-        array[size++] = value;//set array at the size +1 to the value
+       array[size] = value;//set array at the size to the value
+        size++;//increment the size
         return true;//return true
     }
 
