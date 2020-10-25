@@ -1,7 +1,6 @@
 public interface MyLists<E>{//interface with the functions that the classes need to have
     E get(int index);//function to get a value at an index
     boolean add(E value);//function to add to the list at the end
-    void add(int index, E value);//function to add to the list at a given index
     E remove(int index);//function to remove a given index
     int getSize();//function to return the size of the list
 }
@@ -29,24 +28,11 @@ class MyArrayList<E> implements MyLists<E>{
         if (size == array.length){//if the size equals the length of the array
             growArray();//call the growArray function
         }
-       array[size] = value;//set array at the size to the value
+        array[size] = value;//set array at the size to the value
         size++;//increment the size
         return true;//return true
     }
 
-    public void add(int index, E value){//function to add at a specified index
-        if (index < 0 && index >= size){//if the index is less than 0 or greater than or equal to the size
-            System.out.println("Invalid index");//print invalid index
-        }
-        if (size == array.length){//if the size equals the length of the array
-            growArray();//call the growArray function
-        }
-        for(int i = size; i > index; i--){//loop to go through each value in the array from the end
-            array[i] = array[i - 1];//set the array value at i to the array value at i-1
-        }
-        array[index] = value;//set the array at the index to the value
-        size++;//increment the size
-    }
 
     public E remove(int index){//function to remove a value from the array at a specified index
         if (index < 0 && index >= size){//if the index is less than 0 or greater than or equal to the size
@@ -120,26 +106,6 @@ class MyLinkedList<E> implements MyLists<E>{
         return true;//return true
     }
 
-    public void add(int index, E value){//function to add a value at a specified index
-        if (index < 0 && index >= size){//if the index is less than zero or greater than or equal to the size
-            System.out.println("Invalid index");//print invalid index
-        }
-        if (index == 0){//if the index equals 0
-            Node<E> Nnode = new Node<>(value);//make the new node with the given value
-            Nnode.next = head;//set the node.next to be the head
-            head = Nnode;//set the head to equal the node
-            size++;//increment the size
-        }
-        else{
-            Node<E> previous = head;//set previous to the head
-            for(int i = 0; i < index - 1; i++){//loop though the linkedlist
-                previous = previous.next;//set previous to previous.next
-            }
-            Node<E> Nnode = new Node<>(value);//make the new node
-            previous.next = Nnode;// set previous.next to the new node
-            size++;//increment the size
-        }
-    }
 
     public E remove(int index){//function to remove a node
         if (index < 0 && index >= size){//if the index is less than zero or greater than or equal to the size
