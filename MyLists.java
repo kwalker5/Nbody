@@ -1,3 +1,4 @@
+//Kate Walker
 public interface MyLists<E>{//interface with the functions that the classes need to have
     E get(int index);//function to get a value at an index
     boolean add(E value);//function to add to the list at the end
