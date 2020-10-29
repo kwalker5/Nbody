@@ -35,7 +35,7 @@ public class Nbody extends JPanel implements ActionListener{
         Random rand = new Random();//make rand a new random
         col = new Color (rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)); //create a new, random color for each body
     }
-    public double getMass(){//function to get the mass
+    public double getMass(){//function to get the mass of the body
         return mass;//return mass
     }
     public int getXcord(){//function to get the X coordinate
@@ -54,7 +54,7 @@ public class Nbody extends JPanel implements ActionListener{
         return Integer.parseInt(size);//return size
     }
 
-    public Color getColor(){//function to get the color
+    public Color getColor(){//function to get the color of the body
         return col;//return the color
     }
     public void force(Nbody two, double scale){//function to calculate the force
